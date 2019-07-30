@@ -24,6 +24,8 @@ export class SignupComponent implements OnInit {
       'password2': new FormControl('akshay2',Validators.required)
     })
 
+    this.loginUser();
+
   }
 
   navigateToLogin(){
@@ -40,6 +42,17 @@ export class SignupComponent implements OnInit {
         console.log('error', error);
     });
 
+  }
+
+  loginUser(){
+    const logintest  = {username : 'akshay@gmail.com',password : 'akshay2'}
+    this._userservice.login(logintest).subscribe(
+      response => {
+        console.log('login response',response);
+      },
+      error => {
+        console.log('error', error);
+    });
   }
 
 }

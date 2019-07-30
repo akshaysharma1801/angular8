@@ -19,11 +19,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
     BrowserAnimationsModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: BaseUrlInterceptor,
-      multi: true,
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

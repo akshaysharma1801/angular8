@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable,throwError, from } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
     headers: new HttpHeaders({'Content-Type': 'application/json','Accept':'application/json'}),
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authenticationService: AuthenticationService ) { }
 
   RegisterUser(User): Observable<any>{
     return this.http.post('api/account/registerview/', User, this.httpOptions)
@@ -22,15 +23,24 @@ export class UserService {
     );
   }
 
-  // RegisterUser(User): Observable<any>{
+  login(credentials): Observable<any> {
+    // authenticate user
+    return this.http.post('api/account/authview/', credentials).pipe( tap ((profile: any) => {
+        this.authenticationService.setToken({value: profile.token});
+        localStorage.setItem('profile', JSON.stringify(profile));
+      }));
+  }
 
-  //   return this.http.post('http://127.0.0.1:8000/api/account/registerview/', User, this.httpOptions)
-  //   .map((response: Response) => {
-  //     return response;     
-  //   }).catch(this.handleError);
 
-  // }
-
+  logout() {
+    return this.http.get('/api/logout/')
+    .pipe( tap((response: any) => {
+        if(response.status) {
+          this.authenticationService.forgetToken();
+        }
+      })
+    );
+  }
 
 
   private handleError(error: HttpErrorResponse) {
