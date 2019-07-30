@@ -16,7 +16,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   RegisterUser(User): Observable<any>{
-    return this.http.post('http://127.0.0.1:8000/api/account/registerview/', User, this.httpOptions)
+    return this.http.post('api/account/registerview/', User, this.httpOptions)
     .pipe(
       catchError(this.handleError)
     );
