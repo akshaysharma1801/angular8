@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule }    from '@angular/common/http';
 
 // import { NavbarComponent } from './components/navbar/navbar.component';
 // import { WebsiteNolayoutComponent } from './components/website-nolayout/website-nolayout.component';
@@ -18,7 +19,8 @@ import {NavbarComponent,WebsiteNolayoutComponent,NoLayoutComponent,LoginComponen
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
   ]
 })
 export class CoreModule { }

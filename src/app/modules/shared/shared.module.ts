@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +22,9 @@ import {
     MatIconModule,
     MatListModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
   } from '@angular/material';
 
 const materialDesign = [
@@ -33,7 +36,9 @@ const materialDesign = [
   MatListModule,
   MatCardModule,
   MatExpansionModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
 ]
 
 @NgModule({
@@ -41,8 +46,10 @@ const materialDesign = [
   imports: [
     CommonModule,
     RouterModule,
-    materialDesign
+    materialDesign,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  exports :[SidebarComponent,materialDesign],
+  exports :[SidebarComponent,materialDesign,ReactiveFormsModule,FormsModule],
 })
 export class SharedModule {}
