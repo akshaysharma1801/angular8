@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './modules/core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseUrlInterceptor } from './modules/core/http interceptor/baseurl.interceptor';
+import { AuthServiceInterceptor } from './modules/core/http interceptor/authservice.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
     BrowserAnimationsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthServiceInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

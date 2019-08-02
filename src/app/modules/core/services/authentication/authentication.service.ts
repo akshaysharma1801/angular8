@@ -22,6 +22,7 @@ export class AuthenticationService {
   setToken(token) {
     token.value = 'Bearer '+token.value;
     this.token = token;
+    console.log(this.token);
     localStorage.setItem('authentication', JSON.stringify(token));
   }
 

@@ -33,9 +33,9 @@ export class UserService {
 
 
   logout() {
-    return this.http.get('/api/logout/')
+    return this.http.get('api/account/logout/')
     .pipe( tap((response: any) => {
-        if(response.status) {
+        if(response) {
           this.authenticationService.forgetToken();
         }
       })

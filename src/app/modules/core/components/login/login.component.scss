@@ -1,0 +1,31 @@
+section{
+    main{
+        .signup-form{
+            .signup-form-inner{
+                mat-card{
+                    max-width: 40rem;
+
+                    mat-card-content{
+                            display: flex;
+                            flex-direction: column;
+                    }
+
+                    mat-card-actions{
+                        display: flex;
+                        flex-direction: column;
+
+                        mat-stroked-button:nth-child(1){
+                            width: 100%;
+                            border: 1px solid greenyellow;
+                        }
+
+                        mat-stroked-button:nth-child(2){
+                            width: 100%;
+                            border: 1px solid lightsalmon;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
